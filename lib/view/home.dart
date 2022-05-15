@@ -2,6 +2,7 @@ import 'package:ebook/controller/con_ebook.dart';
 import 'package:ebook/model/model_ebook.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:sizer/sizer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
                         builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot) {
                           if(snapshot.connectionState == ConnectionState.done){
                             return SizedBox(
-                              height: 300,
+                              height: 27.h,
                               child: Swiper(
                                 autoplay: true,
                                 itemCount: snapshot.data!.length,
@@ -54,9 +55,18 @@ class _HomeState extends State<Home> {
                                     child: Padding(
                                       padding: EdgeInsets.all(10),
                                       child: Container(
-                                        child:  Image.network(
-                                          listSlider[index].photo
-                                        ),
+                                        child:  Stack(
+                                          children: [
+                                            ClipRRect(
+                                              child: Image.network(
+                                                  listSlider[index].photo,
+                                                fit: BoxFit.cover,
+                                                width: 100.w,
+                                              ),
+                                              borderRadius: BorderRadius.circular(15),
+                                            )
+                                          ],
+                                        )
                                       ),
                                     ),
                                   );
