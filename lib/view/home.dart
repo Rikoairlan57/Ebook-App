@@ -59,11 +59,38 @@ class _HomeState extends State<Home> {
                                           children: [
                                             ClipRRect(
                                               child: Image.network(
-                                                  listSlider[index].photo,
+                                                listSlider[index].photo,
                                                 fit: BoxFit.cover,
                                                 width: 100.w,
                                               ),
                                               borderRadius: BorderRadius.circular(15),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                    bottomRight: Radius.circular(15),
+                                                    bottomLeft: Radius.circular(15),
+                                                  ),
+                                                  gradient: LinearGradient(
+                                                    end: Alignment(0.0, -1),
+                                                    begin: Alignment(0.0, 0.2),
+                                                    colors: [
+                                                      Colors.black,
+                                                      Colors.black.withOpacity(0.0)
+                                                    ]
+                                                  )
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.all(8),
+                                                  child: Text(
+                                                    listSlider[index].title, style: TextStyle(
+                                                    fontSize: 17,
+                                                    color: Colors.white),
+                                                  ),
+                                                ),
+                                              ),
                                             )
                                           ],
                                         )
