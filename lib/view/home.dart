@@ -117,6 +117,7 @@ class _HomeState extends State<Home> {
                         builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot){
                           if(snapshot.connectionState == ConnectionState.done){
                             return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.all(10),
@@ -125,11 +126,36 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 20.h,
+                                  height: 25.h,
                                   child: ListView.builder(
                                       itemBuilder: (BuildContext context, int index){
-                                        return Container(
-                                          child: Text(listPostNews[index].title),
+                                        return GestureDetector(
+                                          onTap: (){},
+                                          child: Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Column(
+                                              children: [
+                                                ClipRRect(
+                                                  child: Image.network(
+                                                    listPostNews[index].photo,
+                                                    height: 15.h,
+                                                    width: 25.w,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 0.5.h,),
+                                                Container(
+                                                  width: 25.w,
+                                                  child: Text(
+                                                    listPostNews[index].title,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                    ), maxLines: 2, overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                         );
                                       },
                                       itemCount: snapshot.data!.length,
