@@ -1,5 +1,7 @@
 import 'package:ebook/controller/con_ebook.dart';
+import 'package:ebook/controller/con_latest.dart';
 import 'package:ebook/model/model_ebook.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:sizer/sizer.dart';
@@ -17,14 +19,15 @@ class _HomeState extends State<Home> {
   Future<List<ModelEbook>>? getSlider;
   List<ModelEbook> listSlider = [];
 
-  Future<List<ModelEbook>>? getPost;
-  List<ModelEbook> listPostTerbaru = [];
+  Future<List<ModelEbook>>? getPostNews;
+  List<ModelEbook> listPostNews = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getSlider = fetchEbook(listSlider);
+    getPostNews = fetchLatest(listPostNews);
   }
 
   @override
@@ -37,6 +40,7 @@ class _HomeState extends State<Home> {
             builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot) {
               if(snapshot.connectionState == ConnectionState.done){
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Slider
                     Container(
@@ -104,6 +108,40 @@ class _HomeState extends State<Home> {
                             return Container();
                           }
                         },
+                      ),
+                    ),
+                    // news
+                    Container(
+                      child: FutureBuilder(
+                        future: getPostNews,
+                        builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot){
+                          if(snapshot.connectionState == ConnectionState.done){
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Latest', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
+                                  child: ListView.builder(
+                                      itemBuilder: (BuildContext context, int index){
+                                        return Container(
+                                          child: Text(listPostNews[index].title),
+                                        );
+                                      },
+                                      itemCount: snapshot.data!.length,
+                                      scrollDirection: Axis.horizontal,
+                                  ),
+                                )
+                              ],
+                            );
+                          }else{
+                            return Container();
+                          }
+                        }
                       ),
                     )
                   ],
