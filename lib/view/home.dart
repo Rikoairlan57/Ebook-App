@@ -129,36 +129,49 @@ class _HomeState extends State<Home> {
                                   height: 25.h,
                                   child: ListView.builder(
                                       itemBuilder: (BuildContext context, int index){
-                                        return GestureDetector(
-                                          onTap: (){},
-                                          child: Container(
-                                            padding: EdgeInsets.all(10),
-                                            child: Column(
-                                              children: [
-                                                ClipRRect(
-                                                  child: Image.network(
-                                                    listPostNews[index].photo,
-                                                    height: 15.h,
-                                                    width: 25.w,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 0.5.h,),
-                                                Container(
-                                                  width: 25.w,
-                                                  child: Text(
-                                                    listPostNews[index].title,
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                    ), maxLines: 2, overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                )
-                                              ],
+                                        if(index == snapshot.data!.length){
+                                          return GestureDetector(
+                                            onTap: (){},
+                                            child: Container(
+                                              width: 25.w,
+                                              padding: EdgeInsets.all(10),
+                                              child: Text("Learn More", style: TextStyle(
+                                                color: Colors.blue
+                                              ),textAlign: TextAlign.center,),
                                             ),
-                                          ),
-                                        );
+                                          );
+                                        }else {
+                                          return GestureDetector(
+                                            onTap: (){},
+                                            child: Container(
+                                              padding: EdgeInsets.all(10),
+                                              child: Column(
+                                                children: [
+                                                  ClipRRect(
+                                                    child: Image.network(
+                                                      listPostNews[index].photo,
+                                                      height: 15.h,
+                                                      width: 25.w,
+                                                      fit: BoxFit.fitHeight,
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: 0.5.h,),
+                                                  Container(
+                                                    width: 25.w,
+                                                    child: Text(
+                                                      listPostNews[index].title,
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                      ), maxLines: 2, overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        }
                                       },
-                                      itemCount: snapshot.data!.length,
+                                      itemCount: snapshot.data!.length + 1,
                                       scrollDirection: Axis.horizontal,
                                   ),
                                 )
