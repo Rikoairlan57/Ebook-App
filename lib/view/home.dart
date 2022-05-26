@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                                                       listPostNews[index].photo,
                                                       height: 15.h,
                                                       width: 25.w,
-                                                      fit: BoxFit.fitHeight,
+                                                      fit: BoxFit.fill,
                                                     ),
                                                   ),
                                                   SizedBox(height: 0.5.h,),
@@ -181,6 +181,65 @@ class _HomeState extends State<Home> {
                             return Container();
                           }
                         }
+                      ),
+                    ),
+                    // coming soon
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: FutureBuilder(
+                        future: getPostNews,
+                        builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot) {
+                          if(snapshot.connectionState == ConnectionState.done){
+                            return Container(
+                              color: Colors.blueGrey.withOpacity(0.5),
+                              padding: EdgeInsets.only(top: 2.0.h),
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      child: Text("Coming Soon", style: TextStyle(
+                                          color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32, letterSpacing: 10
+                                      ), textAlign: TextAlign.center,),
+                                      width: MediaQuery.of(context).size.width,
+                                      margin: EdgeInsets.only(top: 3.h),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: snapshot.data!.length,
+                                      itemBuilder: (BuildContext ctx, int index){
+                                        return GestureDetector(
+                                          onTap: (){},
+                                          child: Container(
+                                            child: Column(
+                                              children: [
+                                                ClipRRect(
+                                                  child: Image.network(
+                                                    listPostNews[index].photo,
+                                                    height: 15.h,
+                                                    width: 25.w,
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    ),
+                                  )
+                                ],
+                              ),
+                            );
+                          }else {
+                            return Container(
+
+                            );
+                          }
+
+                        },
                       ),
                     )
                   ],
