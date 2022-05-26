@@ -1,3 +1,4 @@
+import 'package:ebook/controller/con_coming.dart';
 import 'package:ebook/controller/con_ebook.dart';
 import 'package:ebook/controller/con_latest.dart';
 import 'package:ebook/model/model_ebook.dart';
@@ -22,12 +23,16 @@ class _HomeState extends State<Home> {
   Future<List<ModelEbook>>? getPostNews;
   List<ModelEbook> listPostNews = [];
 
+  Future<List<ModelEbook>>? getComing;
+  List<ModelEbook> listComing = [];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getSlider = fetchEbook(listSlider);
     getPostNews = fetchLatest(listPostNews);
+    getComing = fetchComing(listComing);
   }
 
   @override
@@ -171,6 +176,7 @@ class _HomeState extends State<Home> {
                                           );
                                         }
                                       },
+                                      shrinkWrap: true,
                                       itemCount: snapshot.data!.length + 1,
                                       scrollDirection: Axis.horizontal,
                                   ),
@@ -187,7 +193,7 @@ class _HomeState extends State<Home> {
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: FutureBuilder(
-                        future: getPostNews,
+                        future: getComing,
                         builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot) {
                           if(snapshot.connectionState == ConnectionState.done){
                             return Container(
@@ -207,6 +213,7 @@ class _HomeState extends State<Home> {
                                   ),
                                   SizedBox(
                                     child: ListView.builder(
+                                      shrinkWrap: true,
                                       scrollDirection: Axis.horizontal,
                                       itemCount: snapshot.data!.length,
                                       itemBuilder: (BuildContext ctx, int index){
@@ -217,18 +224,29 @@ class _HomeState extends State<Home> {
                                               children: [
                                                 ClipRRect(
                                                   child: Image.network(
-                                                    listPostNews[index].photo,
+                                                    listComing[index].photo,
                                                     height: 15.h,
                                                     width: 25.w,
                                                     fit: BoxFit.fill,
                                                   ),
                                                 ),
+                                                SizedBox(height: 0.5.h,),
+                                                Container(
+                                                  width: 25.w,
+                                                  child: Text(
+                                                    listComing[index].title,
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                    ), maxLines: 2, overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                )
                                               ],
                                             ),
                                           ),
                                         );
                                       }
                                     ),
+                                    height: 25.h,
                                   )
                                 ],
                               ),
