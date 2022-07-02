@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ebook/controller/con_category.dart';
 import 'package:ebook/controller/con_coming.dart';
@@ -268,6 +268,81 @@ class _HomeState extends State<Home> {
 
                         },
                       ),
+                    ),
+                    // CATEGORY
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: FutureBuilder(
+                        future: getCategory, 
+                        builder: (BuildContext context, AsyncSnapshot<List<ModelCategory>> snapshot) { 
+                          if(snapshot.connectionState == ConnectionState.done){
+                            return Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text("category", style: TextStyle(
+                                    color: Colors.black, fontWeight: FontWeight.bold
+                                  ))
+                                ),
+                                SizedBox(
+                                  child: ListView.builder(
+                                    itemCount: snapshot.data!.length,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (BuildContext ctx, int index){
+                                      return GestureDetector(
+                                        onTap: (){},
+                                        child: Container(
+                                          padding: EdgeInsets.all(5),
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                child: Image.network(
+                                                  listCategory[index].photoCat,
+                                                  height: 15.h,
+                                                  width: 25.w,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                              ClipRRect(
+                                                child: Container(
+                                                  height: 15.h,
+                                                  width: 25.w,
+                                                  color: Colors.black.withOpacity(0.4)
+                                                )
+                                              ),
+                                              Positioned(
+                                                child: Center(
+                                                  child: Text(
+                                                    listCategory[index].name,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w500
+                                                    ),
+                                                    maxLines: 1, textAlign: TextAlign.center, overflow: TextOverflow.ellipsis, 
+                                                  )
+                                                ),
+                                                right: 0, bottom: 0, left: 0, top: 0
+                                              )
+                                            ]
+                                          ),
+                                        )
+                                      );
+                                    }
+                                  ),
+                                  height: 15.h,
+                                )
+                              ],
+                            );
+                          }else {
+                            return Container();
+                          }
+                         },
+                        
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2.h,
                     )
                   ],
                 );
