@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:ebook/controller/con_category.dart';
 import 'package:ebook/controller/con_coming.dart';
 import 'package:ebook/controller/con_ebook.dart';
 import 'package:ebook/controller/con_latest.dart';
+import 'package:ebook/model/model_category.dart';
 import 'package:ebook/model/model_ebook.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +30,9 @@ class _HomeState extends State<Home> {
   Future<List<ModelEbook>>? getComing;
   List<ModelEbook> listComing = [];
 
+  Future<List<ModelCategory>>? getCategory;
+  List<ModelCategory> listCategory = [];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -33,6 +40,7 @@ class _HomeState extends State<Home> {
     getSlider = fetchEbook(listSlider);
     getPostNews = fetchLatest(listPostNews);
     getComing = fetchComing(listComing);
+    getCategory = fetchCategory(listCategory);
   }
 
   @override
@@ -121,9 +129,7 @@ class _HomeState extends State<Home> {
                         future: getPostNews,
                         builder: (BuildContext context, AsyncSnapshot<List<ModelEbook>> snapshot){
                           if(snapshot.connectionState == ConnectionState.done){
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                            var children2 = [
                                 Padding(
                                   padding: EdgeInsets.all(10),
                                   child: Text(
@@ -181,7 +187,10 @@ class _HomeState extends State<Home> {
                                       scrollDirection: Axis.horizontal,
                                   ),
                                 )
-                              ],
+                              ];
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: children2,
                             );
                           }else{
                             return Container();
