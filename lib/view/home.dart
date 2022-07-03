@@ -46,6 +46,32 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white70,
+        title: Row(
+          children: [
+            Container(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                child: Image.asset('assets/image/user.png', 
+                  width: 12.w, height: 6.h,
+                  fit: BoxFit.cover  
+                ),
+              )
+            ),
+            SizedBox(
+              width: 2.w
+            ),
+            Text(
+              "user",
+              style: TextStyle(
+                color: Colors.black
+              )
+            )
+          ]
+        )
+      ),
       body: Container(
         child: SingleChildScrollView(
           child: FutureBuilder(
