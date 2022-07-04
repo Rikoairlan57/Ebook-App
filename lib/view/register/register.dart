@@ -44,6 +44,66 @@ class _EbookRegisterState extends State<EbookRegister> {
                     )
                   )
                 )
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10, right: 20, bottom: 10, left: 20),
+                child: TextField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: "Username",
+                    prefixIcon: Icon(Icons.account_circle_outlined, color: Colors.black),
+                    filled: true,
+                    fillColor: Colors.white54,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    )
+                  )
+                )
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10, right: 20, bottom: 10, left: 20),
+                child: TextField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: "Email",
+                    prefixIcon: Icon(Icons.email_outlined, color: Colors.black),
+                    filled: true,
+                    fillColor: Colors.white54,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    )
+                  )
+                )
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10, right: 20, bottom: 10, left: 20),
+                child: TextField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    prefixIcon: Icon(Icons.lock_outlined, color: Colors.black),
+                    filled: true,
+                    fillColor: Colors.white54,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blueAccent)
+                    )
+                  )
+                )
               )
             ],
           )
