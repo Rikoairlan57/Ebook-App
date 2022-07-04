@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class EbookRegister extends StatefulWidget {
   EbookRegister({Key? key}) : super(key: key);
@@ -101,6 +102,28 @@ class _EbookRegisterState extends State<EbookRegister> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.blueAccent)
+                    )
+                  )
+                )
+              ),
+              Container(
+                child: GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 15, right: 20, bottom: 30, left: 20),
+                    padding: EdgeInsets.only(top: 1.2.h, bottom: 1.2.h, right: 8.w, left: 8.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      color: Colors.blueAccent
+                    ),
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17
+                      )
                     )
                   )
                 )
